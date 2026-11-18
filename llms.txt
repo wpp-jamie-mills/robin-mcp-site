@@ -1,0 +1,51 @@
+# robin-mcp
+
+> Book Robin meeting rooms from your chat. robin-mcp is a local MCP server for Claude Desktop and Claude Code that acts as you, with a self-contained Robin sign-in — it needs no other app, and your token lives only in the macOS Keychain. An MCP server for Claude Desktop and Claude Code, on macOS, version 0.1.5.
+
+## Install (agents)
+
+Continue only if `uname -s` prints `Darwin` (macOS) and `curl` is available; the installer can install uv with `--install-uv`. Otherwise tell the user what it needs.
+
+Run the installer with this one command. It downloads the release, checks its SHA-256 (nothing runs before the check passes) and installs it. With no terminal it never prompts and answers no to every question. It exits non-zero, with the reason on stderr, if anything fails.
+
+```bash
+curl -fsSL https://wpp-jamie-mills.github.io/robin-mcp-site/install.sh | ROBIN_INSTALL_TTY=/dev/null bash -s -- --yes
+```
+
+### Upgrade
+
+Run the same command again.
+
+### Verify
+
+Run the installer again with `--status` (after `bash -s --`). It prints the install folder, the version, and whether the “robin” entry is in Claude Desktop.
+
+## Tools
+
+| Tool | What it does |
+|---|---|
+| `robin_auth_status` | Whether you're signed in; org, scopes, token expiry. No secrets. |
+| `robin_whoami` | You, your organisations and timezone. |
+| `robin_locations` | Your buildings (id, name, timezone, address). |
+| `robin_levels` | A building's floors (level id + name, e.g. 8, Ground Floor). |
+| `robin_find_rooms` | Free, bookable rooms for a time window. |
+| `robin_room_details` | One room: capacity, type, amenities, floor, policies. |
+| `robin_room_schedule` | A room's bookings for a period. |
+| `robin_my_bookings` | Your room bookings between two times. |
+| `robin_find_people` | Search colleagues by name or email. |
+| `robin_person` | A colleague's profile and working hours. |
+| `robin_working_hours` | Your configured working hours. |
+| `robin_weekly_schedule` | Your weekly in-office plan for a building. |
+| `robin_notification_settings` | Your Robin notification settings. |
+| `robin_book_room` | Book a meeting room directly (standalone). |
+| `robin_cancel_booking` | Cancel a whole booking you made and free the room (e.g. a standalone booking). |
+| `robin_add_room` | Add a room onto an existing calendar meeting. |
+| `robin_cancel_room` | Remove a room from a meeting (frees the room, keeps the meeting). |
+| `robin_calendar` | List your calendar meetings (optionally only those with a room). |
+| `robin_suggest_rooms` | Suggest bookable rooms for a meeting or by capacity. |
+
+## Links
+
+- [Landing page](https://wpp-jamie-mills.github.io/robin-mcp-site/): install guides for people and agents
+- [Summary](https://wpp-jamie-mills.github.io/robin-mcp-site/summary.md): this project as one markdown page
+- [Installer](https://wpp-jamie-mills.github.io/robin-mcp-site/install.sh): the script the install command runs
